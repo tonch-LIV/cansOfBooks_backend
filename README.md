@@ -18,4 +18,6 @@
   - added `/books` route as `async();`; `server.js`.
 - 07.02; `lab02Mongo`
   - created `seeds.js` for starter code / book entries.
-  - 
+  - `node seed.js` hangs when ran; MongoDB miscommunication between Windows and WSL localhost's...
+    - run `node seed.js` from same terminal window as `node server.js`.
+  - moved `mongoose.connect` inside `seedBooks();` and made into `await`.

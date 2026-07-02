@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // =======================
 // imports / foundation  |
@@ -9,17 +9,17 @@ require('dotenv').config();
 
 const Book = require('./models/Book');
 
-mongoose.connect(process.env.MONGODB_URI);
-
 // ==============
 // definitions  |
 // =============
 
 async function seedBooks() {
+  await mongoose.connect(process.env.MONGODB_URI);
+
   await Book.create([
     {
       title: "Killers of the Flower Moon",
-      description: '',
+      description: 'Dive deep in the happenings surrounding the Osage and the brutal murders that took place in Oklahoma 1920.',
       status: 'Currently reading',
     },
     {
@@ -29,7 +29,7 @@ async function seedBooks() {
     },
     {
       title: 'Guns, Germs, and Steel: The Fates of Human Societies',
-      description: '',
+      description: 'Ever wonder why things happened in certain regions and to certain societies, author Jared Diamond offers a look at civilizations earlyn days.',
       status: 'Currently reading',
     },
     {
@@ -79,7 +79,7 @@ async function seedBooks() {
     }, */
   ]);
 
-  console.log('Books have been aded to the DB.');
+  console.log('Books have been added to the DB.');
   mongoose.disconnect();  // closes / turns of DB connection after seeding; 
 }
 
