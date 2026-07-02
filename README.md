@@ -11,4 +11,11 @@
     - confirmed in `package.json`; `"mongoose": "^9.7.3"`.
   - turned on MongoDB in terminal before proceeding further.
   - added / 'imported' `mongoose` to let server talk to MongoDB and `dotenv` to let server read values from ''; `server.js`.
+- `lab02Mongo` branch created.
   - defined `MONGODB_URI`; `.env` | added to `server.js` to create connection to MongoDB.
+  - created `models` directory and `Books.js` within.
+  - created schema and exported / imported; `Book.js` -> `server.js`.  
+  - added `/books` route as `async();`; `server.js`.
+- 07.02; `lab02Mongo`
+  - created `seeds.js` for starter code / book entries.
+  - 
