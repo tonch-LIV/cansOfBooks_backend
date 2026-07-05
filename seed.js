@@ -15,11 +15,12 @@ const Book = require('./models/Book');
 
 async function seedBooks() {
   await mongoose.connect(process.env.MONGODB_URI);
+  await Book.deleteMany({}); // deletes existing Book documents
 
   await Book.create([
     {
       title: "Killers of the Flower Moon",
-      description: 'Dive deep in the happenings surrounding the Osage and the brutal murders that took place in Oklahoma 1920.',
+      description: 'Dive deep in the happenings surrounding the Osage and the brutal murders that took place in 1920s Oklahoma .',
       status: 'Currently reading',
     },
     {
@@ -29,7 +30,7 @@ async function seedBooks() {
     },
     {
       title: 'Guns, Germs, and Steel: The Fates of Human Societies',
-      description: 'Ever wonder why things happened in certain regions and to certain societies, author Jared Diamond offers a look at civilizations earlyn days.',
+      description: 'Ever wonder why things happened in certain regions and to certain societies, author Jared Diamond offers a look at civilizations early days.',
       status: 'Currently reading',
     },
     {
@@ -80,7 +81,7 @@ async function seedBooks() {
   ]);
 
   console.log('Books have been added to the DB.');
-  mongoose.disconnect();  // closes / turns of DB connection after seeding; 
+  await mongoose.disconnect();  // closes / turns of DB connection after seeding; 
 }
 
 // =================

@@ -21,3 +21,8 @@
   - `node seed.js` hangs when ran; MongoDB miscommunication between Windows and WSL localhost's...
     - run `node seed.js` from same terminal window as `node server.js`.
   - moved `mongoose.connect` inside `seedBooks();` and made into `await`.
+  - added `await Book.deleteMany({})` to avoid duplicates on server startup; `seed.js`.
+  - imported `cors()` to allow frontend to communcate with backend; `server.js`.
+  - added code ton teach Express how to read icnoming requests in JSON format; `app.use(express.json());`; `server.js`.
+  - also added `app.post('/books', ...)` to listen for `POST` requests to `/books`; `server.js`.
+  - added `await` to explicitly wait for the connection to close; `seed.js`.
