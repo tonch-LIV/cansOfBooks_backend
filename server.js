@@ -20,22 +20,44 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', async (req, res) => {
-  const books = await Book.find({});  // finds all book docs; {} = empty / noFilter;
-  res.json(books);
+  try {
+    const books = await Book.find({});  // finds all book docs; {} = empty / noFilter;
+    res.json(books);
+  } catch(error) {
+    console.error(error);
+
+    res.status(500).json({
+      message: 'Unable to retrieve books.',
+      error: error.message,
+    });
+  }
 });
 
 app.post('/books', async (req, res) => {
   try {
+    const { title, description, status } = req.body;  // destructuring object
+
+    if (!title || !description || !status) {
+      return res.status(400).json({
+        message: `Title, description, and status are required.`,
+      });
+    }
+
     const newBook = {  // creates object matching Book schema*  
-      title: req.body.title,
-      description: req.body.description,
-      status: req.body.status,
+      title,
+      description,
+      status,
     };
 
     const createdBook = await Book.create(newBook);  //saves new entry in MongoDB
     res.status(201).json(createdBook);  // sends saved boot back to client; 201
   } catch (error) {
-    res.status(500).json({ message: 'Unable to create book' });
+    console.error(error);
+
+    res.status(500).json({ 
+      message: 'Unable to create book',
+      error: error.message,
+    });
   }
 });
 

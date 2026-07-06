@@ -26,3 +26,8 @@
   - added code ton teach Express how to read icnoming requests in JSON format; `app.use(express.json());`; `server.js`.
   - also added `app.post('/books', ...)` to listen for `POST` requests to `/books`; `server.js`.
   - added `await` to explicitly wait for the connection to close; `seed.js`.
+  - updated `app.post('/books'...)` to better validate request and reject incomplete requests; `server.js`.
+  - updated `catch` to include error context; `server.js`.
+  - implement destructuring for `req.body`; `app.post('/books'..`; `server.js`.
+  - added `try... catch`; `app.get('/books'`; `server.js`.
+  
