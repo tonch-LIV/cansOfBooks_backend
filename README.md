@@ -30,4 +30,9 @@
   - updated `catch` to include error context; `server.js`.
   - implement destructuring for `req.body`; `app.post('/books'..`; `server.js`.
   - added `try... catch`; `app.get('/books'`; `server.js`.
-  
+  - *troubleshooting*
+    - corrected `MONGODB_URI` address; `.env`.
+    - created `testConnection.js`.
+    - modified `mongoose.connect` to include error catching; `server.js`.
+    - still debugging... lots of console.logs.
+    

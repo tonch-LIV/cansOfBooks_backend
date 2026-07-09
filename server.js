@@ -1,3 +1,5 @@
+console.log('***** SERVER FILE LOADED *****');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -13,10 +15,20 @@ app.use(express.json()); // teaches Express to read incoming request in JSON for
 
 const PORT = 3001;
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('Mongo connected!');
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 app.get('/', (req, res) => {
-  res.send('Backend Server Running!');
+  res.send('Backend Server Running! THIS IS THE CORRECT SERVER');
 });
 
 app.get('/books', async (req, res) => {
@@ -34,6 +46,9 @@ app.get('/books', async (req, res) => {
 });
 
 app.post('/books', async (req, res) => {
+  console.log('***** POST ROUTE HIT *****');
+  console.log(req.body);
+  
   try {
     const { title, description, status } = req.body;  // destructuring object
 
