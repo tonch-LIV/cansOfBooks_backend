@@ -35,4 +35,5 @@
     - created `testConnection.js`.
     - modified `mongoose.connect` to include error catching; `server.js`.
     - still debugging... lots of console.logs.
+      - **If MongoDB Atlas reports  self-signed certificate in certificate chain; check network first. The cause may be TLS inspection by the organization's network infrastructure rather than a problem with the application.**
     
