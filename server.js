@@ -32,11 +32,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', async (req, res) => {
+  console.log("GET /books request received");
+
   try {
     const books = await Book.find({});  // finds all book docs; {} = empty / noFilter;
     res.json(books);
   } catch(error) {
-    console.error(error);
+    console.error("Error retrieving books:", error);
 
     res.status(500).json({
       message: 'Unable to retrieve books.',
@@ -67,7 +69,7 @@ app.post('/books', async (req, res) => {
     const createdBook = await Book.create(newBook);  //saves new entry in MongoDB
     res.status(201).json(createdBook);  // sends saved boot back to client; 201
   } catch (error) {
-    console.error(error);
+    console.error("Error creating book:", error);
 
     res.status(500).json({ 
       message: 'Unable to create book',
@@ -76,6 +78,6 @@ app.post('/books', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
