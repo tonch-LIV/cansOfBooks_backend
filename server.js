@@ -78,6 +78,16 @@ app.post('/books', async (req, res) => {
   }
 });
 
+app.delete('/books/:id', async (req, res) => {
+  console.log('**** DELETE ROUTE HIT ****');
+  console.log(req.params);
+  console.log(req.params.id);
+
+  res.status(200).json({
+    message: 'DELETE route reached successfully.',
+  });
+});
+
 // app.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
 // });
