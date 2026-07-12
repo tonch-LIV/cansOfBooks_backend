@@ -80,12 +80,29 @@ app.post('/books', async (req, res) => {
 
 app.delete('/books/:id', async (req, res) => {
   console.log('**** DELETE ROUTE HIT ****');
-  console.log(req.params);
-  console.log(req.params.id);
 
-  res.status(200).json({
-    message: 'DELETE route reached successfully.',
-  });
+  try {
+    const deletedBook = await Book.findByIdAndDelete(req.params.id);
+
+    if (!deletedBook) {
+      return res.status(404).json({
+        message: 'Book not found.',
+      });
+    }
+    
+    res.status(200).json({
+      message: 'Book deleted successfully.',
+      deletedBook,
+    });
+
+  } catch (error) {
+    console.error('Error deleting book:', error);
+
+    res.status(500).json({
+      message: 'Unable to delete book.',
+      error: error.message,
+    });
+  }
 });
 
 // app.listen(PORT, () => {
