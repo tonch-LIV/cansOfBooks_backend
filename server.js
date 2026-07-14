@@ -117,7 +117,7 @@ app.put('/books/:id', async (req, res) => {
       req.params.id,
       req.body, 
       {
-        new: true,  // sends updated doc after updating
+        returnDocument: 'after',  // sends updated doc after updating
       }
     );
 

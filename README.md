@@ -42,4 +42,5 @@
 - **`upd` branch created**
   - 07.14
     - created PUT route for editing books; `server.js`.
-    - 
+    - updated deprecated syntax; `new: true` -> `returnDocument: 'after'`; `server.js`.
+    
