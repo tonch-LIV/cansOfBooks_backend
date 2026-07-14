@@ -38,5 +38,4 @@
       - **If MongoDB Atlas reports `self-signed certificate in certificate chain`; check network first. The cause may be TLS inspection by the organization's network infrastructure rather than a problem with the application.**
   - 07.12
     - added DELETE route to `/books` with `/:id` to delete correct entry; `server.js`.
-    - updated DELETE route with actual code to delete entries from DB, print response messages, and handle errors; `server,js`.
-    
+    - updated DELETE route with actual code to delete entries from DB, print response messages, and handle errors; `server.js`.

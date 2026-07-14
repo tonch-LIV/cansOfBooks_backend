@@ -24,10 +24,12 @@ mongoose.connect(process.env.MONGODB_URI)
     });
   })
   .catch((error) => {
+    console.error('Mongo connection failed;');
     console.error(error);
   });
 
 app.get('/', (req, res) => {
+  console.log('GET / received');
   res.send('Backend Server Running! THIS IS THE CORRECT SERVER');
 });
 
@@ -36,6 +38,8 @@ app.get('/books', async (req, res) => {
 
   try {
     const books = await Book.find({});  // finds all book docs; {} = empty / noFilter;
+    console.log('Books found:', books.length);
+
     res.json(books);
   } catch(error) {
     console.error("Error retrieving books:", error);
