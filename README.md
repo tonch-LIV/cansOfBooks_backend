@@ -11,7 +11,7 @@
     - confirmed in `package.json`; `"mongoose": "^9.7.3"`.
   - turned on MongoDB in terminal before proceeding further.
   - added / 'imported' `mongoose` to let server talk to MongoDB and `dotenv` to let server read values from ''; `server.js`.
-- `lab02Mongo` branch created.
+- **`lab02Mongo`** branch created.
   - defined `MONGODB_URI`; `.env` | added to `server.js` to create connection to MongoDB.
   - created `models` directory and `Books.js` within.
   - created schema and exported / imported; `Book.js` -> `server.js`.  
@@ -39,3 +39,8 @@
   - 07.12
     - added DELETE route to `/books` with `/:id` to delete correct entry; `server.js`.
     - updated DELETE route with actual code to delete entries from DB, print response messages, and handle errors; `server.js`.
+- **`upd` branch created**
+  - 07.14
+    - created PUT route for editing books; `server.js`.
+    - updated deprecated syntax; `new: true` -> `returnDocument: 'after'`; `server.js`.
+    
