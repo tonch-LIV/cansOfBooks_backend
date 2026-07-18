@@ -38,7 +38,9 @@ app.get('/books', verifyUser, async (req, res) => {
   console.log("GET /books request received");
 
   try {
-    const books = await Book.find({});  // finds all book docs; {} = empty / noFilter;
+    const email = req.user.email;
+
+    const books = await Book.find({ email }); 
     console.log('Books found:', books.length);
 
     res.json(books);
@@ -59,6 +61,8 @@ app.post('/books', verifyUser, async (req, res) => {
   try {
     const { title, description, status } = req.body;  // destructuring object
 
+    const email = req.user.email;
+
     if (!title || !description || !status) {
       return res.status(400).json({
         message: `Title, description, and status are required.`,
@@ -69,6 +73,7 @@ app.post('/books', verifyUser, async (req, res) => {
       title,
       description,
       status,
+      email,
     };
 
     const createdBook = await Book.create(newBook);  //saves new entry in MongoDB
@@ -87,7 +92,12 @@ app.delete('/books/:id', verifyUser, async (req, res) => {
   console.log('**** DELETE ROUTE HIT ****');
 
   try {
-    const deletedBook = await Book.findByIdAndDelete(req.params.id);
+    const email = req.user.email;
+
+    const deletedBook = await Book.findOneAndDelete({
+      _id: req.params.id,
+      email,
+    });
 
     if (!deletedBook) {
       return res.status(404).json({
@@ -114,9 +124,14 @@ app.put('/books/:id', verifyUser, async (req, res) => {
   console.log('***** PUT ROUTE HIT *****');
 
   try {
-    const updatedBook = await Book.findByIdAndUpdate(
-      req.params.id,
-      req.body, 
+    const email = req.user.email;
+
+    const updatedBook = await Book.findOneAndUpdate(
+      {
+        _id: req.params.id,
+        email,
+      },
+      req.body,      
       {
         returnDocument: 'after',  // sends updated doc after updating
       }
