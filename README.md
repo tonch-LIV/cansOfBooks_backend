@@ -43,4 +43,16 @@
   - 07.14
     - created PUT route for editing books; `server.js`.
     - updated deprecated syntax; `new: true` -> `returnDocument: 'after'`; `server.js`.
-    
+- **`autho` branch created.**
+  - 07.18
+    - installed `jsonwebtoken jwks-rsa` package libraries to verify JWT from Auth0.
+    - created `auth/authorize.js` sub-directory and file.
+    - defined `JWKS_URI` variable; `.env`.
+    - imported `authorize.js` into `server.js`.
+    - protected `/books` routes by adding `verifyUser` between path and route handler to make Express check JWT before allowing any book request to continue; `server.js`.
+    - updated schema to include email, so mongo/goose can store the user's email address for every book; `Books.js`
+    - updated GET `/books` route to tie request of retrieving books to match the logged in user email; `server.js`.
+    - similarily for POST request; back-end should verify auth0 email to decide who owns book doc; `server.js`.
+    - for DELETE; rather than just deleting by knowing a book's `_id`, the request will require matching logged in user to the OG creator; replacing `findByIdAndDelete`; `server.js`.
+    - similarily for PUT request; updating to `findByIdAndDelete` so only updates are made by correct user; `server.js`.
+    - 

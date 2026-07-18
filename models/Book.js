@@ -7,6 +7,7 @@ const bookSchema = new mongoose.Schema({
   title: String,
   description: String,
   status: String,
+  email: String,
 });
 
 // creates model; 
