@@ -43,4 +43,11 @@
   - 07.14
     - created PUT route for editing books; `server.js`.
     - updated deprecated syntax; `new: true` -> `returnDocument: 'after'`; `server.js`.
-    
+- **`autho` branch created.**
+  - 07.18
+    - installed `jsonwebtoken jwks-rsa` package libraries to verify JWT from Auth0.
+    - created `auth/authorize.js` sub-directory and file.
+    - defined `JWKS_URI` variable; `.env`.
+    - imported `authorize.js` into `server.js`.
+    - protected `/books` routes by adding `verifyUser` between path and route handler to make Express check JWT before allowing any book request to continue.
+    -

@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const Book = require('./models/Book');
+const verifyUser = require('./auth/authorize');
 
 require('dotenv').config();
 
@@ -33,7 +34,7 @@ app.get('/', (req, res) => {
   res.send('Backend Server Running! THIS IS THE CORRECT SERVER');
 });
 
-app.get('/books', async (req, res) => {
+app.get('/books', verifyUser, async (req, res) => {
   console.log("GET /books request received");
 
   try {
@@ -51,7 +52,7 @@ app.get('/books', async (req, res) => {
   }
 });
 
-app.post('/books', async (req, res) => {
+app.post('/books', verifyUser, async (req, res) => {
   console.log('***** POST ROUTE HIT *****');
   console.log(req.body);
   
@@ -82,7 +83,7 @@ app.post('/books', async (req, res) => {
   }
 });
 
-app.delete('/books/:id', async (req, res) => {
+app.delete('/books/:id', verifyUser, async (req, res) => {
   console.log('**** DELETE ROUTE HIT ****');
 
   try {
@@ -109,7 +110,7 @@ app.delete('/books/:id', async (req, res) => {
   }
 });
 
-app.put('/books/:id', async (req, res) => {
+app.put('/books/:id', verifyUser, async (req, res) => {
   console.log('***** PUT ROUTE HIT *****');
 
   try {
